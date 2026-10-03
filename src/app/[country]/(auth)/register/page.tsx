@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/components/auth-provider";
 import { ApiError } from "@/lib/api-error";
+import { env } from "@/lib/env";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -162,7 +163,7 @@ export default function Register(): React.JSX.Element {
         }
 
         try {
-            const res = await fetch("http://localhost:8080/api/auth/register", {
+            const res = await fetch(`${env("BACKEND_URL")}/auth/register`, {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },

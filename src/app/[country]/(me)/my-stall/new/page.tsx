@@ -2,6 +2,7 @@
 
 import { useRequiredAuth } from "@/hooks/useRequiredAuth";
 import { getCsrfToken } from "@/lib/csrf";
+import { env } from "@/lib/env";
 import Image from "next/image";
 import { redirect, useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -245,18 +246,15 @@ export default function NewListing(): React.JSX.Element {
 
             if (!token) throw new Error("CSRF Token is missing.");
 
-            const res = await fetch(
-                "http://localhost:8080/api/listings/create",
-                {
-                    method: "POST",
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-XSRF-TOKEN": token,
-                    },
-                    body: JSON.stringify(listingToCreate),
+            const res = await fetch(`${env("BACKEND_URL")}/listings/create`, {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-XSRF-TOKEN": token,
                 },
-            );
+                body: JSON.stringify(listingToCreate),
+            });
 
             if (!res.ok) {
                 throw new Error("Failed to create listing.");

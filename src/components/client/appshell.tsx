@@ -24,6 +24,7 @@ import {
 import { useAuth } from "../auth-provider";
 import { Toast } from "../toast";
 import { useToast } from "@/hooks/useToast";
+import { env } from "@/lib/env";
 
 interface AppShellProps {
     children: ReactNode;
@@ -120,7 +121,7 @@ function TopBarFirstRow(): React.JSX.Element {
         try {
             const token = getCsrfToken();
 
-            const res = await fetch("http://localhost:8080/api/auth/logout", {
+            const res = await fetch(`${env("BACKEND_URL")}/auth/logout`, {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -193,11 +194,9 @@ function TopBarFirstRow(): React.JSX.Element {
                             <div
                                 tabIndex={0}
                                 role="button"
-                                className="btn btn-ghost btn-circle avatar avatar-placeholder"
+                                className="btn btn-circle avatar avatar-placeholder"
                             >
-                                <div
-                                    className={`${bg} rounded-full w-11`}
-                                ></div>
+                                <div>{user.username[0].toUpperCase()}</div>
                             </div>
                             <ul
                                 tabIndex={-1}

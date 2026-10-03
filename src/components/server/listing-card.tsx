@@ -69,7 +69,9 @@ export default function ListingCard({
                 <div className="flex gap-1">
                     <div className="avatar avatar-placeholder self-start">
                         <div className="bg-neutral text-neutral-content w-10 rounded-full">
-                            <span className="text-2xl">V</span>
+                            <span className="text-2xl">
+                                {listing.neighborUsername[0]}
+                            </span>
                         </div>
                     </div>
                     <div className="flex flex-col w-full gap-2">
