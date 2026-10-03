@@ -5,7 +5,7 @@ export async function getListings(
 
     try {
         const res = await fetch(
-            `${process.env.BACKEND_URL}/listings/all${query}`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/listings/all${query}`,
         );
 
         if (!res.ok) throw new Error("Failed to fetch listings.");

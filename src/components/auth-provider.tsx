@@ -27,9 +27,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const refresh = async () => {
         try {
-            const res = await fetch(`${process.env.BACKEND_URL}/auth/me`, {
-                credentials: "include",
-            });
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me`,
+                {
+                    credentials: "include",
+                },
+            );
 
             if (!res.ok) {
                 throw new Error("Failed to fetch current user");
@@ -45,7 +48,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         async function checkSession() {
-            fetch(`${process.env.BACKEND_URL}/auth/me`, {
+            fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me`, {
                 method: "GET",
                 credentials: "include",
             })

@@ -10,7 +10,7 @@ export async function getUser() {
 
     if (!accessToken) return null;
 
-    const res = await fetch(`${process.env.BACKEND_URL}/auth/me`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me`, {
         headers: {
             Cookie: `access_token=${accessToken}`,
         },

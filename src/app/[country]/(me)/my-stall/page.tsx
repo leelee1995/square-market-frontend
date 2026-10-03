@@ -29,7 +29,7 @@ export default function MyStall(): React.JSX.Element {
         const getMyListing = async () => {
             try {
                 const res = await fetch(
-                    `${process.env.BACKEND_URL}/listings/mine`,
+                    `${process.env.NEXT_PUBLIC_BACKEND_URL}/listings/mine`,
                     {
                         method: "GET",
                         credentials: "include",
@@ -75,7 +75,7 @@ export default function MyStall(): React.JSX.Element {
 
         try {
             const res = await fetch(
-                `${process.env.BACKEND_URL}/listings/${listing.id}`,
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/listings/${listing.id}`,
                 {
                     method: "DELETE",
                     credentials: "include",

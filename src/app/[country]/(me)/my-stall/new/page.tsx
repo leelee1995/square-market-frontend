@@ -246,7 +246,7 @@ export default function NewListing(): React.JSX.Element {
             if (!token) throw new Error("CSRF Token is missing.");
 
             const res = await fetch(
-                `${process.env.BACKEND_URL}/listings/create`,
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/listings/create`,
                 {
                     method: "POST",
                     credentials: "include",

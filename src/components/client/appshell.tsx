@@ -120,13 +120,16 @@ function TopBarFirstRow(): React.JSX.Element {
         try {
             const token = getCsrfToken();
 
-            const res = await fetch(`${process.env.BACKEND_URL}/auth/logout`, {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "X-XSRF-TOKEN": token ?? "",
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`,
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "X-XSRF-TOKEN": token ?? "",
+                    },
                 },
-            });
+            );
 
             if (!res.ok) {
                 const data = await res.json().catch(() => ({}));

@@ -34,15 +34,18 @@ export default function Login(): React.JSX.Element {
         setLoading(true);
 
         try {
-            const res = await fetch(`${process.env.BACKEND_URL}/auth/login`, {
-                method: "POST",
-                credentials: "include",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    username: identifier,
-                    password: password,
-                }),
-            });
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`,
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        username: identifier,
+                        password: password,
+                    }),
+                },
+            );
 
             const data = await res.json();
 

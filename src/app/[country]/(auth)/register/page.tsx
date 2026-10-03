@@ -163,7 +163,7 @@ export default function Register(): React.JSX.Element {
 
         try {
             const res = await fetch(
-                `${process.env.BACKEND_URL}/auth/register`,
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`,
                 {
                     method: "POST",
                     credentials: "include",

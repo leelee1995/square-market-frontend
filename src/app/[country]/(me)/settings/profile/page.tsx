@@ -127,7 +127,7 @@ export default function Profile(): React.JSX.Element | null {
 
         const patch = async (endpoint: string, json: {}) => {
             const res = await fetch(
-                `${process.env.BACKEND_URL}/auth/me/${endpoint}`,
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me/${endpoint}`,
                 {
                     method: "PATCH",
                     credentials: "include",
