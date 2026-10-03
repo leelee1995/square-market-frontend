@@ -3,7 +3,6 @@
 import ListingCard from "@/components/server/listing-card";
 import { useRequiredAuth } from "@/hooks/useRequiredAuth";
 import { getCsrfToken } from "@/lib/csrf";
-import { env } from "@/lib/env";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
@@ -29,10 +28,13 @@ export default function MyStall(): React.JSX.Element {
 
         const getMyListing = async () => {
             try {
-                const res = await fetch(`${env("BACKEND_URL")}/listings/mine`, {
-                    method: "GET",
-                    credentials: "include",
-                });
+                const res = await fetch(
+                    `${process.env.BACKEND_URL}/listings/mine`,
+                    {
+                        method: "GET",
+                        credentials: "include",
+                    },
+                );
 
                 if (!res.ok) {
                     throw new Error("Failed to fetch user's listings.");
@@ -73,7 +75,7 @@ export default function MyStall(): React.JSX.Element {
 
         try {
             const res = await fetch(
-                `${env("BACKEND_URL")}/listings/${listing.id}`,
+                `${process.env.BACKEND_URL}/listings/${listing.id}`,
                 {
                     method: "DELETE",
                     credentials: "include",

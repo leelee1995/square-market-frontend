@@ -24,7 +24,6 @@ import {
 import { useAuth } from "../auth-provider";
 import { Toast } from "../toast";
 import { useToast } from "@/hooks/useToast";
-import { env } from "@/lib/env";
 
 interface AppShellProps {
     children: ReactNode;
@@ -121,7 +120,7 @@ function TopBarFirstRow(): React.JSX.Element {
         try {
             const token = getCsrfToken();
 
-            const res = await fetch(`${env("BACKEND_URL")}/auth/logout`, {
+            const res = await fetch(`${process.env.BACKEND_URL}/auth/logout`, {
                 method: "POST",
                 credentials: "include",
                 headers: {

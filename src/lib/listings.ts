@@ -1,12 +1,12 @@
-import { env } from "./env";
-
 export async function getListings(
     category?: string | null,
 ): Promise<Listing[]> {
     const query = category ? `?category=${encodeURIComponent(category)}` : "";
 
     try {
-        const res = await fetch(`${env("BACKEND_URL")}/listings/all${query}`);
+        const res = await fetch(
+            `${process.env.BACKEND_URL}/listings/all${query}`,
+        );
 
         if (!res.ok) throw new Error("Failed to fetch listings.");
 

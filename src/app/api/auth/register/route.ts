@@ -1,9 +1,7 @@
-import { env } from "@/lib/env";
-
 export async function POST(req: Request) {
     const body = await req.json();
 
-    const res = await fetch(env("BACKEND_URL") + "/auth/register", {
+    const res = await fetch(process.env.BACKEND_URL + "/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

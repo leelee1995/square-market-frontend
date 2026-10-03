@@ -1,6 +1,5 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { env } from "./env";
 
 /* FOR SERVER COMPONENTS */
 
@@ -11,7 +10,7 @@ export async function getUser() {
 
     if (!accessToken) return null;
 
-    const res = await fetch(`${env("BACKEND_URL")}/auth/me`, {
+    const res = await fetch(`${process.env.BACKEND_URL}/auth/me`, {
         headers: {
             Cookie: `access_token=${accessToken}`,
         },

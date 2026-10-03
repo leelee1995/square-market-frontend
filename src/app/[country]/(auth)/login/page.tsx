@@ -2,7 +2,6 @@
 
 import { useAuth } from "@/components/auth-provider";
 import { ApiError } from "@/lib/api-error";
-import { env } from "@/lib/env";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -35,7 +34,7 @@ export default function Login(): React.JSX.Element {
         setLoading(true);
 
         try {
-            const res = await fetch(`${env("BACKEND_URL")}/auth/login`, {
+            const res = await fetch(`${process.env.BACKEND_URL}/auth/login`, {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },
