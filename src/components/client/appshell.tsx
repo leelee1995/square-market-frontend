@@ -140,8 +140,7 @@ function TopBarFirstRow(): React.JSX.Element {
                 );
             }
             setUser(null);
-
-            router.push("/");
+            success("You have logged out.");
         } catch (err) {
             console.log(err);
         }
@@ -198,7 +197,7 @@ function TopBarFirstRow(): React.JSX.Element {
                                 role="button"
                                 className="btn btn-circle avatar avatar-placeholder"
                             >
-                                <div>{user.username[0].toUpperCase()}</div>
+                                <div>{user?.username?.[0].toUpperCase()}</div>
                             </div>
                             <ul
                                 tabIndex={-1}
@@ -224,13 +223,9 @@ function TopBarFirstRow(): React.JSX.Element {
                                     <button
                                         className="btn"
                                         onClick={() =>
-                                            logout()
-                                                .then(() => router.push("/"))
-                                                .then(() =>
-                                                    success(
-                                                        "You have logged out.",
-                                                    ),
-                                                )
+                                            logout().then(() =>
+                                                router.push("/"),
+                                            )
                                         }
                                     >
                                         <span>
