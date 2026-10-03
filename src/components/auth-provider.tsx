@@ -1,5 +1,6 @@
 "use client";
 
+import { env } from "@/lib/env";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 export type User = {
@@ -28,7 +29,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const refresh = async () => {
         try {
-            const res = await fetch("http://localhost:8080/api/auth/me", {
+            const res = await fetch(`${env("BACKEND_URL")}/auth/me`, {
                 credentials: "include",
             });
 
@@ -46,7 +47,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         async function checkSession() {
-            fetch("http://localhost:8080/api/auth/me", {
+            fetch(`${env("BACKEND_URL")}/auth/me`, {
                 method: "GET",
                 credentials: "include",
             })

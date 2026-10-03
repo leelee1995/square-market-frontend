@@ -3,6 +3,7 @@
 import { useAuth } from "@/components/auth-provider";
 import { useRequiredAuth } from "@/hooks/useRequiredAuth";
 import { getCsrfToken } from "@/lib/csrf";
+import { env } from "@/lib/env";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { LuInfo, LuSettings, LuUser } from "react-icons/lu";
@@ -127,7 +128,7 @@ export default function Profile(): React.JSX.Element | null {
 
         const patch = async (endpoint: string, json: {}) => {
             const res = await fetch(
-                `http://localhost:8080/api/auth/me/${endpoint}`,
+                `${env("BACKEND_URL")}/auth/me/${endpoint}`,
                 {
                     method: "PATCH",
                     credentials: "include",
