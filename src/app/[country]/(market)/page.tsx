@@ -47,37 +47,47 @@ function CategoryList({
     country: string;
 }): React.JSX.Element {
     return (
-        <div className="flex flex-col w-full mt-5">
-            <h3 className="text-xl font-semibold text-indigo-500 px-3">
-                {category}
-            </h3>
-            {list.length > 0 && (
-                <ul className="grid grid-cols-2 @[900]:grid-cols-3 @[1440]:grid-cols-4 w-full">
-                    {list.map((item, index) => (
-                        <li
-                            key={index}
-                            className="rounded-md transition-all duration-300 ease-in-out p-4 hover:bg-mist-500/20"
-                        >
-                            <ListingCard listing={item} />
-                        </li>
-                    ))}
-                </ul>
-            )}
-            {list.length === 0 && (
-                <div className="flex justify-center items-center text-mist-500 p-10">
-                    <p>No neighbors are selling.</p>
+        <Suspense fallback={<FallBack />}>
+            <div className="flex flex-col w-full mt-5">
+                <h3 className="text-xl font-semibold text-indigo-500 px-3">
+                    {category}
+                </h3>
+                {list.length > 0 && (
+                    <ul className="grid grid-cols-2 @[900]:grid-cols-3 @[1440]:grid-cols-4 w-full">
+                        {list.map((item, index) => (
+                            <li
+                                key={index}
+                                className="rounded-md transition-all duration-300 ease-in-out p-4 hover:bg-mist-500/20"
+                            >
+                                <ListingCard listing={item} />
+                            </li>
+                        ))}
+                    </ul>
+                )}
+                {list.length === 0 && (
+                    <div className="flex justify-center items-center text-mist-500 p-10">
+                        <p>No neighbors are selling.</p>
+                    </div>
+                )}
+                <div className="divider">
+                    <Link
+                        href={`/${country}/#${category}`}
+                        className={`${list.length === 0 && "btn-disabled"} btn btn-ghost hover:btn-primary`}
+                        tabIndex={list.length === 0 ? -1 : 0}
+                        aria-disabled={list.length === 0 ? true : false}
+                    >
+                        See more <LuChevronRight size={20} />
+                    </Link>
                 </div>
-            )}
-            <div className="divider">
-                <Link
-                    href={`/${country}/#${category}`}
-                    className={`${list.length === 0 && "btn-disabled"} btn btn-ghost hover:btn-primary`}
-                    tabIndex={list.length === 0 ? -1 : 0}
-                    aria-disabled={list.length === 0 ? true : false}
-                >
-                    See more <LuChevronRight size={20} />
-                </Link>
             </div>
+        </Suspense>
+    );
+}
+
+function FallBack(): React.JSX.Element {
+    return (
+        <div className="min-h-screen flex items-center justify-center">
+            <span className="loading loading-ring loading-lg"></span>
         </div>
     );
 }
