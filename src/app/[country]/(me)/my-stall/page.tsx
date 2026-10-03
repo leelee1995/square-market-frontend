@@ -69,11 +69,9 @@ export default function MyStall(): React.JSX.Element {
     async function deleteListing(listing: Listing) {
         setId(listing.id);
 
-        const token = getCsrfToken();
-
-        if (!token) return;
-
         try {
+            const token = await getCsrfToken();
+
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_BACKEND_URL}/listings/${listing.id}`,
                 {

@@ -118,7 +118,7 @@ function TopBarFirstRow(): React.JSX.Element {
 
     async function logout(): Promise<void> {
         try {
-            const token = getCsrfToken();
+            const token = await getCsrfToken();
 
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`,
@@ -126,7 +126,7 @@ function TopBarFirstRow(): React.JSX.Element {
                     method: "POST",
                     credentials: "include",
                     headers: {
-                        "X-XSRF-TOKEN": token ?? "",
+                        "X-XSRF-TOKEN": token,
                     },
                 },
             );

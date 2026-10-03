@@ -125,6 +125,8 @@ export default function Profile(): React.JSX.Element | null {
 
         setProcessing(true);
 
+        const csrfToken = await getCsrfToken();
+
         const patch = async (endpoint: string, json: {}) => {
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/me/${endpoint}`,
@@ -133,7 +135,7 @@ export default function Profile(): React.JSX.Element | null {
                     credentials: "include",
                     headers: {
                         "Content-Type": "application/json",
-                        "X-XSRF-TOKEN": getCsrfToken() ?? "",
+                        "X-XSRF-TOKEN": csrfToken,
                     },
                     body: JSON.stringify(json),
                 },
