@@ -5,7 +5,7 @@ import { AuthProvider } from "@/components/auth-provider";
 import { ToastContainer } from "@/components/toast-container";
 
 export const metadata: Metadata = {
-    title: "Huberce",
+    title: "Square Market",
     description: "Trade with your neighbors",
 };
 
